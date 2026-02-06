@@ -1,0 +1,16 @@
+# Нейронка (веса модели e5 весят много, GitHub их не примет)
+cache/
+
+# Окружение и секреты
+.env
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# Если внутри data лежат тяжелые CSV
+data/*.csv
