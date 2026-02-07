@@ -78,7 +78,7 @@ async def search_recipes(query: str, db: Session = Depends(get_db), max_time: in
     # FastAPI видит response_model=list[RecipeShort] и удаляет embedding из ответа.
     results = results.order_by(
         Recipe.embedding.cosine_distance(query_vector)
-    ).limit(5).all()
+    ).limit(25).all()
 
     return results
 @app.delete("/recipe/all", status_code=status.HTTP_204_NO_CONTENT)
