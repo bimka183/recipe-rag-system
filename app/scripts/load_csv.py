@@ -6,7 +6,8 @@ from app.core.embeddings import EmbeddingService
 from app.db.models import Recipe
 from app.db.processor import DataProcessor, run_async_translation
 from app.db.session import session
-
+from app.db.models import Base
+from app.db.session import engine # Или то, через что ты подключаешься к БД
 
 def translate_dataframe(df):
     print("Начинаем перевод колонок...")
@@ -55,7 +56,9 @@ def save_to_db(df, vectors):
 
 
 if __name__ == "__main__":
-    raw_df = pd.read_csv('C:/Users/bimka/Downloads/Food_Recipe.csv')
+    print("Создаем таблицы в базе данных...")
+    Base.metadata.create_all(bind=engine)
+    raw_df = pd.read_csv('/app/data/Food_Recipe.csv')
     df = mapping_column(raw_df)
 
     df = translate_dataframe(df)
