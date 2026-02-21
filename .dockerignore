@@ -1,9 +1,16 @@
+# Игнорируем огромные данные
+data/
+*.csv
+
+# Игнорируем локальное окружение и кэш
 .venv/
 __pycache__/
+.pytest_cache/
 .git/
-.env
 
-
+# Игнорируем кэш моделей (мы пробрасываем его через volumes)
 cache/
-app/scripts/cache/
-data/
+
+# Игнорируем файлы настроек IDE
+.idea/
+.vscode/
