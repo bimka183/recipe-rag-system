@@ -1,16 +1,15 @@
-# Нейронка (веса модели e5 весят много, GitHub их не примет)
-cache/
-
-# Окружение и секреты
-.env
+# Python мусор
 __pycache__/
 *.pyc
 .venv/
-env/
+venv/
 
-# IDE
-.idea/
-.vscode/
+# Docker мусор (база данных хранится в volumes, их не пушим)
+postgres_data/
 
-# Если внутри data лежат тяжелые CSV
-data/*.csv
+# Данные и кэш (ОГРОМНЫЕ файлы)
+cache/
+data/Food_Recipe.csv
+
+# Секреты
+.env
