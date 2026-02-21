@@ -24,13 +24,15 @@ services:
     env_file:
       - .env
     volumes:
-      # Пробрасываем папку с моделью, чтобы не качать её каждый раз
+      # 1. Пробрасываем корень проекта, чтобы изменения в коде подхватывались сразу
+      - .:/app
+      # 2. Пробрасываем папку с кэшем моделей
       - ./cache:/app/cache
+      # 3. (Важно) Пробрасываем папку с твоим CSV файлом
+      - ./data:/app/data
     environment:
-      # Указываем sentence-transformers искать модель в папке /app/cache
       - SENTENCE_TRANSFORMERS_HOME=/app/cache
-      # Ссылка на БД внутри сети Docker (используем имя сервиса 'db')
+      # Оставляем хост 'db', так как запускать будем ВНУТРИ докера
       - DATABASE_URL=postgresql://admin:admin@db:5432/rag_base
-
 volumes:
   postgres_data:
